@@ -55,11 +55,17 @@ app.use((err, req, res, next) => {
   res.status(500).json({ pesan: 'Terjadi kesalahan pada server' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server jalan di http://localhost:${PORT}`);
-});
+// Di komputer sendiri: jalankan server biasa.
+// Di Vercel: tidak boleh pakai listen/setInterval.
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server jalan di http://localhost:${PORT}`);
+  });
 
-// Booking disetujui yang tanggal survey-nya sudah lewat otomatis menjadi Selesai.
-// Dicek saat start, lalu tiap 5 menit (dan juga setiap daftar booking dibuka).
-selesaikanBookingKedaluwarsa();
-setInterval(selesaikanBookingKedaluwarsa, 5 * 60 * 1000);
+  // Booking kedaluwarsa dicek saat start, lalu tiap 5 menit.
+  selesaikanBookingKedaluwarsa();
+  setInterval(selesaikanBookingKedaluwarsa, 5 * 60 * 1000);
+}
+
+// Wajib untuk Vercel
+export default app;
