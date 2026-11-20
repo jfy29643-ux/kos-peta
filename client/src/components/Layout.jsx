@@ -7,9 +7,16 @@ export default function Layout() {
 
   return (
     <>
-      <header className="nav no-print">
-        <NavLink to="/" className="brand">🏠 Kos<span>Peta</span></NavLink>
-        <nav>
+     <header className="nav no-print">
+  <NavLink to="/" className="brand">
+    <img 
+      src="/Logo Kos ELYSIAN Elegan.png" 
+      alt="Logo Kos Elysian" 
+      className="brand-logo-full" 
+    />
+    <span>Elysian Kost</span>
+  </NavLink>
+  <nav>
           <NavLink to="/" end>Cari Kos</NavLink>
           {user?.role === 'user' && <NavLink to="/booking-saya">Booking Saya</NavLink>}
           {user?.role === 'owner' && (<>

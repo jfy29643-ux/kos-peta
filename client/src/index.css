@@ -719,3 +719,19 @@ input[type="range"] {
     padding: 8px 12px;
   }
 }
+
+
+/* =====================================================
+   15. LOGO LAYOUT
+   ===================================================== */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo-full {
+  height: 38px !important;     /* Tinggi logo dikunci agar pas di navbar */
+  width: auto !important;      /* Lebar menyesuaikan otomatis agar tidak gepeng */
+  object-fit: contain;
+}
